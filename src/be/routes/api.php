@@ -24,5 +24,6 @@ Route::middleware(['auth:sanctum'])->group(function(){
             Route::post('/','store')->name('store');
             Route::get('/{id}','show')->name('show');
             Route::put('/{id}','update')->name('update');
+            Route::delete('/{id}','destroy')->name('destroy');
         });
 });
