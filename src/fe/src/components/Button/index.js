@@ -5,7 +5,7 @@ import propTypes from 'prop-types'
 
 export default function Button(props) {
     const className = [props.className]
-    className.push("py-4 bg-slate-600 inline-block mt-4 px-12 text-white rounded-lg");
+    className.push("mx-2 px-4 transition-all hover:text-sky-400 hover:border-b-2");
 
     const onClick = () =>{
         if(props.onClick) props.onClick()

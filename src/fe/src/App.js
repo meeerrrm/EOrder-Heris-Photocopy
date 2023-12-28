@@ -1,10 +1,18 @@
-import { Button } from 'components/Button'
+import React from 'react';
+import LandingPage from 'pages/landingPage';
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+
 function App() {
   return (
-    <div className='text-red-500'>
-      <h1>Huhuhu</h1>
-      <Button>Test</Button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
