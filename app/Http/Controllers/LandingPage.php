@@ -94,7 +94,7 @@ class LandingPage extends Controller
         ]);
 
         OrderLog::create([
-            'orders_id'=>$order->id,
+            'order_id'=>$order->id,
             'status'=>'wait-payment',
             'desc'=>'Menunggu pembayaran.',
         ]);
@@ -108,7 +108,7 @@ class LandingPage extends Controller
                 $snapToken->update(['pay'=>true]);
 
                 OrderLog::create([
-                    'orders_id'=>$snapToken->id,
+                    'order_id'=>$snapToken->id,
                     'status'=>'queue',
                     'desc'=>'Menunggu Antrian',
                 ]);   
