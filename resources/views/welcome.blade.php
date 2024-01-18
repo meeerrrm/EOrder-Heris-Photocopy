@@ -17,7 +17,7 @@
                 <div class="mt-4 p-2 bg-white rounded-lg">
                     <img src="{{ url('assets/images/how-to-order.png') }}" alt="Cara Order - Heris Fotocopy">
                 </div>
-                <a href="#" class="py-2 px-4 block font-semibold rounded-lg mt-4 text-center transition-all text-white bg-slate-800 hover:text-white hover:bg-slate-600">Pesan Sekarang</a>
+                <a href="{{ route('orders') }}" class="py-2 px-4 block font-semibold rounded-lg mt-4 text-center transition-all text-white bg-slate-800 hover:text-white hover:bg-slate-600">Pesan Sekarang</a>
             </div>
         </section>
         <section id="pelayanan-kami" class="w-full py-24">
