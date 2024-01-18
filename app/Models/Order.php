@@ -21,4 +21,7 @@ class Order extends Model
         "file",
         "snap_token",
     ];
+    public function log(){
+        return $this->hasMany(OrderLog::class)->orderBy('id','desc');
+    }
 }

@@ -9,11 +9,14 @@
     <body>
         <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
         <script type="text/javascript">
+          var payButton = document.getElementById('pay-button');
+        
+          payButton.addEventListener('click', function () {
             snap.pay('{{ $order->snap_token }}', {
               // Optional
               onSuccess: function(result){
-                    
-                },
+                window.
+              },
               // Optional
               onPending: function(result){
               },
@@ -21,6 +24,7 @@
               onError: function(result){
               }
             });
+          });
         </script>        
     </body>
 </html>

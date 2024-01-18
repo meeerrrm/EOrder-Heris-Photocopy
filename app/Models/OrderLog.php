@@ -9,9 +9,12 @@ class OrderLog extends Model
 {
     use HasFactory;
     protected $fillable = [	
-        "users_id",
-        "orders_id",
+        "user_id",
+        "order_id",
         "status",
         "desc",
     ];
+    public function order(){
+        return $this->hasOne(Order::class);
+    }
 }

@@ -16,6 +16,13 @@ class LandingPage extends Controller
     public function checkOrder(){
         return view('check_orders');
     }
+    public function checkOrderAction(Request $request){
+        $order = Order::where('uniq',$request->invoice_code)->first();
+        if($order){
+            return redirect()->route('detailOrder',$order->uniq);
+        }
+        return redirect()->back()->with('error','Data tidak ditemukan!');
+    }
     public function orderPayment($uniq){
         $order = Order::where('uniq',$uniq)->first();
         if(!empty($order)){
@@ -58,7 +65,7 @@ class LandingPage extends Controller
         $order_detail = [];
         $product = Product::find($request->jenis);
         $product->price *= $request->num_of_page;
-        $total_price += $product->price * $request->num_of_page;
+        $total_price += $product->price;
         $estimate += $product->estimate;
 
         array_push($order_detail,$product);
@@ -89,12 +96,27 @@ class LandingPage extends Controller
         OrderLog::create([
             'orders_id'=>$order->id,
             'status'=>'wait-payment',
-            'desc'=>'Menunggu Pembayaran',
+            'desc'=>'Menunggu pembayaran.',
         ]);
-        return redirect(route('order_payment',$order->uniq));
+        return redirect(route('detailOrder',$order->uniq));
     }
     public function detailOrder($uniq){
+
+        if(isset($_GET['do']) == "payment"){
+            $snapToken = Order::where('snap_token',$_GET['token'])->first();
+            if($snapToken->pay == false){
+                $snapToken->update(['pay'=>true]);
+
+                OrderLog::create([
+                    'orders_id'=>$snapToken->id,
+                    'status'=>'queue',
+                    'desc'=>'Menunggu Antrian',
+                ]);   
+            }
+        }
+        
         $order = Order::where('uniq',$uniq)->first();
+        
         if(!empty($order)){
             return view('order_detail',['order'=>$order]);
         }

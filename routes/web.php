@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[LandingPage::class,'index'])->name('welcome');
 
 Route::get('/check-orders',[LandingPage::class,'checkOrder'])->name('check_orders');
+Route::post('/check-orders',[LandingPage::class,'checkOrderAction'])->name('check_orders.action');
 
 Route::get('/orders',[LandingPage::class,'order'])->name('orders');
 Route::post('/orders',[LandingPage::class,'orderAction'])->name('orders_action');
@@ -50,6 +51,14 @@ Route::middleware('auth')->group(function () {
             Route::delete('/','destroy')->name('destroy');
 
             Route::get('/fetch/{id}','fetchProduct')->name('fetch_product');
+        });
+        Route::controller(App\Http\Controllers\Order\AdminController::class)
+         ->prefix('order')
+         ->name('order.')
+         ->group(function(){
+            Route::get('/','index')->name('index');
+            Route::get('/{id}','show')->name('show');
+            Route::post('/{id}','update')->name('update');
         });
     });
 

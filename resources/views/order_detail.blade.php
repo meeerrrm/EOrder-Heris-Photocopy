@@ -24,15 +24,15 @@
                     </tr>
                     <tr>
                         <td>Status Pembayaran</td>
-                        <td>: <b>@if($order->pay == true)SUDAH BAYAR @else BELUM BAYAR @endif</b></td>
+                        <td>: <b>@if($order->pay == true)Sudah Bayar @else Belum Bayar @endif</b></td>
                     </tr>
                     <tr>
                         <td>Status Pengerjaan</td>
-                        <td>: <b>-</b></td>
+                        <td>: <b>{{ $order->log[0]->desc }}</b></td>
                     </tr>
                 </table>
 @if($order->pay == false)
-                    <a href="#" class="inline-block py-2 px-8 rounded-lg transition-all text-white bg-red-800 hover:bg-red-600 text-sm">Bayar</a>
+                    <a href="#" id="pay-button" class="inline-block py-2 px-8 rounded-lg transition-all text-white bg-red-800 hover:bg-red-600 text-sm">Bayar</a>
 @endif
             </div>
             <div>
@@ -61,4 +61,27 @@
             </div>
         </div>
     </section>
+    <x-slot name="js">
+        @if($order->pay == false)
+        <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+        <script type="text/javascript">
+          var payButton = document.getElementById('pay-button');
+        
+          payButton.addEventListener('click', function () {
+            snap.pay('{{ $order->snap_token }}', {
+              // Optional
+              onSuccess: function(result){
+                location.replace("{{ route('detailOrder',$order->uniq) }}?do=payment&token={{ $order->snap_token }}");
+              },
+              // Optional
+              onPending: function(result){
+              },
+              // Optional
+              onError: function(result){
+              }
+            });
+          });
+        </script> 
+        @endif 
+    </x-slot>
 </x-guest-layout>

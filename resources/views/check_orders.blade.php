@@ -10,10 +10,12 @@
     <section id="main" class="w-full py-24">
         <div class="w-full max-w-5xl mx-auto">
             <label class="font-bold">Nomor Invoice Anda</label>
-            <div class="mt-2">
-                <input type="text" name="invoice_code" id="invoice_code" class="px-4 py-2 text-sm border border-gray-300 rounded outline-none" placeholder="Masukan Nomor Invoice">
+            <form method="POST" class="mt-2">
+                @csrf
+                
+                <input type="text" required name="invoice_code" id="invoice_code" class="px-4 py-2 text-sm border border-gray-300 rounded outline-none" placeholder="Masukan Nomor Invoice">
                 <button class="py-2 px-4 rounded-lg mx-2 transition-all text-white bg-slate-800 hover:bg-slate-600 text-sm">Cari Transaksi</button>
-            </div>
+            </form>
         </div>
     </section>
 </x-guest-layout>
