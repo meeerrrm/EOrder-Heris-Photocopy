@@ -6,7 +6,7 @@
                         <img src="{{ url('assets/images/wait.png') }}" class=" h-72" alt="Heris Fotocopy">
                     </div>
                     <div class="col-span-2 place-self-center">
-                        <h2 class="font-semibold text-2xl text-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed error earum magnam nisi alias minus. Dolores nesciunt sunt, cum asperiores, fuga sapiente eligendi recusandae beatae placeat repudiandae aspernatur quis inventore ducimus adipisci? Exercitationem porro, reprehenderit commodi voluptate non iusto nihil, quod sint, atque officiis voluptatem iste numquam nulla dolor provident.</h2>
+                        <h2 class="font-semibold text-2xl text-white">Proses pemesanan yang mudah dan cepat. Pelanggan tidak perlu datang langsung ke percetakan untuk memesan produk. Cukup dengan mengakses aplikasi, pelanggan dapat memilih produk yang diinginkan, memasukkan informasi pemesanan, dan melakukan pembayaran.</h2>
                     </div>
                 </div>
             </section>
